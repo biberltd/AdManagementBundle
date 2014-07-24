@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<skipper version="3.0.0.1104" mvc="Symfony2" orm="Doctrine2">
+  <module name="AdManagementBundle" import-format="Doctrine2Php" import-path="../Entity" uuid="6c1132dd-4cf1-41d6-820f-3e9e4c0291c7">
+    <entity name="Advertisement" description="Stores a list of advertisement definitions.&#10;&#10;Requires: MultiLanguageSupportBundle, [SiteManagementBundlle]" uuid="17b333cc-ecc3-4a80-99a9-c739dd995609">
+      <field name="id" description="System given id." type="integer" size="10" required="true" unique="true" primary="true" auto-increment="true" uuid="dac9f3a2-743b-4e53-a4a6-ed2cab3be86f"/>
+      <field name="title" description="Advertisement title." type="string" size="155" required="true" uuid="1c03372f-38b4-4760-9e5b-b23f9e9b4985"/>
+      <field name="url_key" description="Advertisement url key." type="string" size="255" uuid="a7c35f98-c329-4df6-9e3f-63275e00ed70"/>
+      <field name="language" description="The language that advertisement will be shown." type="integer" size="5" required="true" uuid="0b944626-63d4-4137-9b04-4a59cbf4a754"/>
+      <field name="content" description="Advertisement content; maybe an HTML code or a path to a file." type="text" required="true" uuid="f7c6a091-83a2-4398-9d64-6ab3a1f230fa"/>
+      <field name="type" description="Ad type. i:image;v:video;f:flash;a:audio;n:ad network code." type="string" size="1" default="i" required="true" uuid="003cf0a4-695d-4362-a972-5b542a4b48a2"/>
+      <field name="date_created" description="Date when ad has been created." type="datetime" required="true" uuid="c84beaa1-0c3f-4c11-84c9-a5dacb1eb133"/>
+      <field name="date_published" description="Date when ad will be published." type="datetime" required="true" uuid="89961977-89fa-4ea6-8e1e-fed7be50f309"/>
+      <field name="date_unpublished" description="Date when ad will be unpublished." type="datetime" uuid="c9411a22-63ca-4ea8-a16d-557d32b440e8"/>
+      <field name="count_view" description="Total number of views." type="integer" size="10" default="0" required="true" uuid="d29e474f-b466-48fd-a43a-23f60e7b86a6"/>
+      <field name="count_view_u" description="Unique view count." type="integer" size="10" default="0" required="true" uuid="6620b5e5-7d19-4a0b-9311-e83fa5193152"/>
+      <field name="count_click" description="Total number of clicks." type="integer" size="10" default="0" required="true" uuid="52cf6ae2-115b-433f-a830-8136d7b2aa4b"/>
+      <field name="count_click_u" description="Unique click count." type="integer" size="10" default="0" required="true" uuid="9c1f7efe-35c4-4493-9a44-7b4348ddeef4"/>
+      <field name="max_view" description="Max number of views  that ad will be run." type="integer" size="10" default="0" uuid="87d84430-4e87-44b9-b8e1-1deffd216197"/>
+      <field name="max_view_u" description="Max number of uniquer views that ad will be run." type="integer" size="10" default="0" uuid="a15f6039-a824-40ad-ad46-1b95d97f5e4e"/>
+      <field name="max_click" description="Max number of clicks that advertisement will run." type="integer" size="10" default="0" uuid="5c52e7ce-8e55-47a8-806d-d341f0dd778a"/>
+      <field name="max_click_u" description="Max number of unique clicks that advertisement will run." type="integer" size="10" default=" " uuid="6535e654-46c2-4a4c-b32d-8d2005aed296"/>
+      <field name="size" description="Size of ad." type="integer" size="5" required="true" uuid="e459bc25-2fde-480a-9383-7cd266d5b31f"/>
+      <field name="site" description="Site that ad belongs to." type="integer" size="10" uuid="26c4d66e-56c6-4b45-bd25-091d00857871"/>
+      <field name="priority" description="1 = 100%" type="decimal" size="2" default="1" required="true" uuid="e64abcbe-f798-4bbb-83a1-2fdaf408843a"/>
+      <field name="cost_max" description="Maximum cost allowed." type="decimal" size="7" default="0" required="true" uuid="b3527f10-c71c-4132-9b1a-9b39c4360ac8"/>
+      <field name="cost_total" description="Total cost of ad to the publisher." type="decimal" size="7" default="0" required="true" uuid="6abc7641-4b46-4b6f-a07c-35b1780090f2"/>
+      <field name="publisher" description="Advertisement publisher." type="integer" size="10" required="true" uuid="c757ebca-8a4f-4223-a30d-ce5ba27d770f"/>
+      <index name="idx_u_advertisement_id" unique="true">
+        <index-field name="id"/>
+      </index>
+      <index name="idx_u_advertisement_url_key">
+        <index-field name="url_key"/>
+        <index-field name="site"/>
+      </index>
+      <index name="idx_n_advertisement_date_created">
+        <index-field name="date_created"/>
+      </index>
+      <index name="idx_n_advertisement_date_published">
+        <index-field name="date_published"/>
+      </index>
+      <index name="idx_n_advertisement_date_unpublished">
+        <index-field name="date_unpublished"/>
+      </index>
+      <orm-attributes>
+        <attribute name="options">
+          <attribute name="charset">utf8</attribute>
+          <attribute name="collate">utf8_turkish_ci</attribute>
+          <attribute name="engine">innodb</attribute>
+        </attribute>
+        <attribute name="table">advertisement</attribute>
+        <attribute name="export-file-name">Advertisement.php</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="Advertisement" to="Language" caption="idx_f_advertisement_language" inverse-alias="language" uuid="8d12af3c-6377-4479-8f0e-86803d720696">
+      <association-field from="language" to="id"/>
+    </association>
+    <association from="Advertisement" to="Site" caption="idx_f_advertisement_site" inverse-alias="site" uuid="7cb2c80f-a3ff-43da-94ea-4203f532a6be">
+      <association-field from="site" to="id"/>
+    </association>
+    <association from="Advertisement" to="AdvertisementSize" caption="idx_f_advertisement_size" owner-alias="advertisements" inverse-alias="advertisement_size" uuid="fd58e7d6-c7c7-4a77-838e-3dfb7be64bde">
+      <association-field from="size" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <association from="Advertisement" to="AdvertisementPublisher" caption="idx_f_advertisement_publisher" owner-alias="advertisements" inverse-alias="advertisement_publisher" uuid="acff7107-68cd-4942-8490-56eb2014cba4">
+      <association-field from="publisher" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">RESTRICT</attribute>
+      </orm-attributes>
+    </association>
+    <entity name="AdvertisementSize" description="Holds definitions of available advertisement sizes." uuid="0e2e60df-8deb-4178-bc7c-cc848cec7637">
+      <field name="id" description="System given id." type="integer" size="5" required="true" unique="true" primary="true" auto-increment="true" uuid="8528a9fe-a239-4eec-b9c0-b7309534b814"/>
+      <field name="width" description="Width of banner." type="integer" size="10" required="true" uuid="d1176c2a-9b67-428f-ae0e-09c319673202"/>
+      <field name="height" description="Height of banner." type="integer" size="10" required="true" uuid="a73c126b-ead1-4be4-8c44-10b6f3ca2a97"/>
+      <field name="price_per_view" description="Price per view." type="decimal" size="5" required="true" uuid="c782e991-1647-446f-9b28-5b86e4cadfe9"/>
+      <field name="price_per_click" description="Price per click." type="decimal" size="5" required="true" uuid="514babbe-ba45-4396-a8be-9189053057c6"/>
+      <orm-attributes>
+        <attribute name="options">
+          <attribute name="charset">utf8</attribute>
+          <attribute name="collate">utf8_turkish_ci</attribute>
+          <attribute name="engine">innodb</attribute>
+        </attribute>
+        <attribute name="table">advertisement_size</attribute>
+        <attribute name="export-file-name">AdvertisementSize.php</attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="AdvertisementAction" description="Tracks advertisement actions.&#10;&#10;Requires: MemberManagementBundle, LogBundle" uuid="8224c4e3-789b-4e08-afca-c43238da7ee7">
+      <field name="id" description="System given id." type="integer" size="15" required="true" unique="true" primary="true" auto-increment="true" uuid="5b82b9d9-200a-426c-9cf8-b9f7ec14926c"/>
+      <field name="action" description="v:view;c:click" type="string" size="1" default="v" required="true" uuid="24ebda41-9eb3-4b56-a58e-ee879152819a"/>
+      <field name="session" description="Session that action has occured." type="integer" size="20" required="true" uuid="cbc3ab2b-bf94-4749-b04a-086b3fdbecdb"/>
+      <field name="advertisement" description="Advertisement that is tracked." type="integer" size="10" required="true" uuid="ae47cca6-85f7-4898-8ee8-64908d40a6e5"/>
+      <field name="member" description="If exists, member who has interacted with advertisement." type="integer" size="10" uuid="2a5ce108-4176-45d8-94d2-2d0f58c6fcfb"/>
+      <index name="idx_u_advertisement_action_id" unique="true">
+        <index-field name="id"/>
+      </index>
+      <orm-attributes>
+        <attribute name="options">
+          <attribute name="charset">utf8</attribute>
+          <attribute name="collate">utf8_turkish_ci</attribute>
+          <attribute name="engine">innodb</attribute>
+        </attribute>
+        <attribute name="table">advertisement_action</attribute>
+        <attribute name="export-file-name">AdvertisementAction.php</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="AdvertisementAction" to="Member" caption="idx_f_advertisement_action_member" inverse-alias="member" uuid="495d5683-4819-4f4a-add0-7a425b270a32">
+      <association-field from="member" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">SET NULL</attribute>
+      </orm-attributes>
+    </association>
+    <association from="AdvertisementAction" to="Session" caption="idx_f_advertisement_action_session" inverse-alias="session" uuid="fb5c285a-36e8-4715-921f-e41047698594">
+      <association-field from="session" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <association from="AdvertisementAction" to="Advertisement" caption="idx_f_advertisement_action_advertisement" owner-alias="advertisement_actions" inverse-alias="advertisement" uuid="28eef866-9509-4212-acac-8db39ae26730">
+      <association-field from="advertisement" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <entity name="AdvertisementSizeLocalization" description="Holds localized values of advertisement size entries." uuid="bdd98cf2-9c35-41b4-8a35-c5a1240ea3a8">
+      <field name="advertisement_size" description="Localized ad size information." type="integer" size="10" required="true" primary="true" uuid="bb4ac083-64ef-4958-981b-3a2f127bec5a"/>
+      <field name="language" description="Localization language." type="integer" size="5" required="true" primary="true" uuid="01c1dbd6-f0e5-4232-b9f8-4dc907c79ad1"/>
+      <field name="name" description="Advertisement size name." type="string" size="155" required="true" uuid="9da8c683-0f46-4c7b-9cb7-006c22848504"/>
+      <field name="url_key" description="Advertisement size url key." type="string" size="255" required="true" uuid="c529ad5e-8724-46d0-880c-719b6efb4e08"/>
+      <index name="idx_u_advertisement_size" unique="true">
+        <index-field name="advertisement_size"/>
+        <index-field name="language"/>
+      </index>
+      <index name="idx_u_advertisement_size_url_key">
+        <index-field name="language"/>
+        <index-field name="url_key"/>
+      </index>
+      <orm-attributes>
+        <attribute name="options">
+          <attribute name="charset">utf8</attribute>
+          <attribute name="collate">utf8_turkish_ci</attribute>
+          <attribute name="engine">innodb</attribute>
+        </attribute>
+        <attribute name="table">advertisement_size_localization</attribute>
+        <attribute name="export-file-name">AdvertisementSizeLocalization.php</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="AdvertisementSizeLocalization" to="Language" caption="idx_f_advertisement_size_localization_url_key" inverse-alias="language" uuid="070cf5ce-515f-4e88-89cb-9aeee04d8c95">
+      <association-field from="language" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <association from="AdvertisementSizeLocalization" to="AdvertisementSize" caption="idx_f_advertisement_size_localization_advertisement_size" owner-alias="localizations" inverse-alias="advertisement_size" uuid="e0b2588f-427d-400d-97a5-2bfb32d86c35">
+      <association-field from="advertisement_size" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <entity name="AdvertisementPublisher" description="Stores a list of advertisement publishers." uuid="d573ce75-e064-4ca0-99ab-69ff226b908d">
+      <field name="id" description="System given id." type="integer" size="10" required="true" primary="true" uuid="7c857df3-8c4c-44ca-8cdd-ce9f22237f33"/>
+      <field name="name" description="Publisher name." type="string" size="255" required="true" uuid="0ddd1e24-a6e2-485c-aaa3-a37d9dbbe5fa"/>
+      <field name="count_ads" description="Count of total ads to date." type="integer" size="10" default="0" required="true" uuid="41886698-c117-4016-9c13-6417bde0c0ea"/>
+      <field name="count_ads_active" description="Count of total current ads." type="integer" size="10" default="0" required="true" uuid="5527b6b5-9c0d-49ad-a714-25899402afde"/>
+      <index name="idx_u_advertisement_publisher_id" unique="true">
+        <index-field name="id"/>
+      </index>
+      <orm-attributes>
+        <attribute name="options">
+          <attribute name="charset">utf8</attribute>
+          <attribute name="collate">utf8_turkish_ci</attribute>
+          <attribute name="engine">innodb</attribute>
+        </attribute>
+        <attribute name="table">advertisement_publisher</attribute>
+        <attribute name="export-file-name">AdvertisementPublisher.php</attribute>
+      </orm-attributes>
+    </entity>
+    <comment caption="AdManagementBundle Pricing" description="advertisement: 640 TL&#10;advertisement_action: 175 TL&#10;advertisement_size: 100 TL&#10;advertisement_size_localization: 130 TL&#10;advertisement_publisher: 80 TL&#10;&#10;toplam: 1.125 TL&#10;" uuid="815be9df-bab7-4553-9abe-e4bbb14af24b"/>
+    <orm-attributes>
+      <attribute name="namespace">BiberLtd\Core\Bundles\AdManagementBundle\Entity</attribute>
+      <attribute name="filename-format">entity-name-only</attribute>
+      <attribute name="file-suffix">without-suffix</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <entity uuid="0e2e60df-8deb-4178-bc7c-cc848cec7637" bg-color="4294967295" hdr-color="4292006610" position-x="600" position-y="50" size-x="0" size-x2="139" size-y="0" size-y2="87"/>
+    <entity uuid="17b333cc-ecc3-4a80-99a9-c739dd995609" bg-color="4294967295" hdr-color="4292006610" position-x="200" position-y="50" size-x="0" size-x2="142" size-y="0" size-y2="297"/>
+    <module uuid="6c1132dd-4cf1-41d6-820f-3e9e4c0291c7" bg-color="4291255552" size-x="0" size-x2="750" size-y="0" size-y2="550"/>
+    <comment uuid="815be9df-bab7-4553-9abe-e4bbb14af24b" bg-color="4294948765" position-x="0" position-y="15" size-x="0" size-x2="175" size-y="0" size-y2="116" txt-color="4278190080"/>
+    <entity uuid="8224c4e3-789b-4e08-afca-c43238da7ee7" bg-color="4294967295" hdr-color="4292006610" position-x="450" position-y="363" size-x="0" size-x2="138" size-y="0" size-y2="87"/>
+    <entity uuid="bdd98cf2-9c35-41b4-8a35-c5a1240ea3a8" bg-color="4294967295" hdr-color="4292006610" position-x="450" position-y="250" size-x="0" size-x2="159" size-y="0" size-y2="73"/>
+    <entity uuid="d573ce75-e064-4ca0-99ab-69ff226b908d" bg-color="4294967295" hdr-color="4292006610" position-x="50" position-y="450" size-x="0" size-x2="152" size-y="0" size-y2="73"/>
+  </visual-data>
+</skipper>
