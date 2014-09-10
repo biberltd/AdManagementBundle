@@ -21,7 +21,7 @@
         "biberltd/logbundle" : "self.version",
         "biberltd/membermanagementbundle" : "self.version",
         "biberltd/multilanguagesupportbundle" : "self.version",
-        "biberltd/sitemanagementbundle" : "self.version",
+        "biberltd/sitemanagementbundle" : "self.version"
     },
     "autoload": {
         "psr-0": { "BiberLtd\\Bundle\\AdManagementBundle": "" }
