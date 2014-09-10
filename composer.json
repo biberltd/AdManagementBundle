@@ -17,12 +17,16 @@
         }
     ],
     "require": {
-        "php": ">=5.3.2"
+        "biberltd/corebundle" : "self.version",
+        "biberltd/logbundle" : "self.version",
+        "biberltd/membermanagementbundle" : "self.version",
+        "biberltd/multilanguagesupportbundle" : "self.version",
+        "biberltd/sitemanagementbundle" : "self.version",
     },
     "autoload": {
-        "psr-0": { "BiberLtd\\AdManagementBundle": "" }
+        "psr-0": { "BiberLtd\\Bundle\\AdManagementBundle": "" }
 
     },
     "minimum-stability": "dev",
-    "target-dir": "BiberLtd/AdManagementBundle"
+    "target-dir": "BiberLtd/Bundle/AdManagementBundle"
 }
