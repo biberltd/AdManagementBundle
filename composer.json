@@ -1,5 +1,5 @@
 {
-    "name": "biberltd/adManagementbundle",
+    "name": "biberltd/ad-management-bundle",
     "type": "symfony-bundle",
     "description": "",
     "keywords": [],
@@ -17,11 +17,11 @@
         }
     ],
     "require": {
-        "biberltd/corebundle" : "self.version",
-        "biberltd/logbundle" : "self.version",
-        "biberltd/membermanagementbundle" : "self.version",
-        "biberltd/multilanguagesupportbundle" : "self.version",
-        "biberltd/sitemanagementbundle" : "self.version"
+        "biberltd/core-bundle" : "self.version",
+        "biberltd/log-bundle" : "self.version",
+        "biberltd/member-management-bundle" : "self.version",
+        "biberltd/multilanguage-support-bundle" : "self.version",
+        "biberltd/site-management-bundle" : "self.version"
     },
     "autoload": {
         "psr-0": { "BiberLtd\\Bundle\\AdManagementBundle": "" }
