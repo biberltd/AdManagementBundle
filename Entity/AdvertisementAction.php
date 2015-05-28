@@ -16,7 +16,7 @@
  */
 namespace BiberLtd\Core\Bundles\AdManagementBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
-use BiberLtd\Core\CoreEntity;
+use BiberLtd\Bundle\CoreBundle\CoreEntity;
 /** 
  * @ORM\Entity
  * @ORM\Table(
@@ -40,20 +40,20 @@ class AdvertisementAction extends  CoreEntity
     private $action;
 
     /** 
-     * @ORM\ManyToOne(targetEntity="BiberLtd\Core\Bundles\MemberManagementBundle\Entity\Member")
+     * @ORM\ManyToOne(targetEntity="BiberLtd\Bundle\MemberManagementBundle\Entity\Member")
      * @ORM\JoinColumn(name="member", referencedColumnName="id", onDelete="SET NULL")
      */
     private $member;
 
     /** 
-     * @ORM\ManyToOne(targetEntity="BiberLtd\Core\Bundles\LogBundle\Entity\Session")
+     * @ORM\ManyToOne(targetEntity="BiberLtd\Bundle\LogBundle\Entity\Session")
      * @ORM\JoinColumn(name="session", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $session;
 
     /** 
      * @ORM\ManyToOne(
-     *     targetEntity="BiberLtd\Core\Bundles\AdManagementBundle\Entity\Advertisement",
+     *     targetEntity="BiberLtd\Bundle\AdManagementBundle\Entity\Advertisement",
      *     inversedBy="advertisement_actions"
      * )
      * @ORM\JoinColumn(name="advertisement", referencedColumnName="id", nullable=false, onDelete="CASCADE")

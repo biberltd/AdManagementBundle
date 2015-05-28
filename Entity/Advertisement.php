@@ -16,7 +16,7 @@
  */
 namespace BiberLtd\Core\Bundles\AdManagementBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
-use BiberLtd\Core\CoreEntity;
+use BiberLtd\Bundle\CoreBundle\CoreEntity;
 /** 
  * @ORM\Entity
  * @ORM\Table(
@@ -132,27 +132,27 @@ class Advertisement extends CoreEntity
 
     /** 
      * @ORM\OneToMany(
-     *     targetEntity="BiberLtd\Core\Bundles\AdManagementBundle\Entity\AdvertisementAction",
+     *     targetEntity="BiberLtd\Bundle\AdManagementBundle\Entity\AdvertisementAction",
      *     mappedBy="advertisement"
      * )
      */
     private $advertisement_actions;
 
     /** 
-     * @ORM\ManyToOne(targetEntity="BiberLtd\Core\Bundles\MultiLanguageSupportBundle\Entity\Language")
+     * @ORM\ManyToOne(targetEntity="BiberLtd\Bundle\MultiLanguageSupportBundle\Entity\Language")
      * @ORM\JoinColumn(name="language", referencedColumnName="id", nullable=false)
      */
     private $language;
 
     /** 
-     * @ORM\ManyToOne(targetEntity="BiberLtd\Core\Bundles\SiteManagementBundle\Entity\Site")
+     * @ORM\ManyToOne(targetEntity="BiberLtd\Bundle\SiteManagementBundle\Entity\Site")
      * @ORM\JoinColumn(name="site", referencedColumnName="id")
      */
     private $site;
 
     /** 
      * @ORM\ManyToOne(
-     *     targetEntity="BiberLtd\Core\Bundles\AdManagementBundle\Entity\AdvertisementSize",
+     *     targetEntity="BiberLtd\Bundle\AdManagementBundle\Entity\AdvertisementSize",
      *     inversedBy="advertisements"
      * )
      * @ORM\JoinColumn(name="size", referencedColumnName="id", nullable=false, onDelete="CASCADE")
@@ -161,7 +161,7 @@ class Advertisement extends CoreEntity
 
     /** 
      * @ORM\ManyToOne(
-     *     targetEntity="BiberLtd\Core\Bundles\AdManagementBundle\Entity\AdvertisementPublisher",
+     *     targetEntity="BiberLtd\Bundle\AdManagementBundle\Entity\AdvertisementPublisher",
      *     inversedBy="advertisements"
      * )
      * @ORM\JoinColumn(name="publisher", referencedColumnName="id", nullable=false, onDelete="RESTRICT")

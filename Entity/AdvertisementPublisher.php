@@ -16,7 +16,7 @@
  */
 namespace BiberLtd\Core\Bundles\AdManagementBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
-use BiberLtd\Core\CoreEntity;
+use BiberLtd\Bundle\CoreBundle\CoreEntity;
 /** 
  * @ORM\Entity
  * @ORM\Table(
@@ -50,7 +50,7 @@ class AdvertisementPublisher extends CoreEntity
 
     /** 
      * @ORM\OneToMany(
-     *     targetEntity="BiberLtd\Core\Bundles\AdManagementBundle\Entity\Advertisement",
+     *     targetEntity="BiberLtd\Bundle\AdManagementBundle\Entity\Advertisement",
      *     mappedBy="advertisement_publisher"
      * )
      */

@@ -16,7 +16,7 @@
  */
 namespace BiberLtd\Core\Bundles\AdManagementBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
-use BiberLtd\Core\CoreEntity;
+use BiberLtd\Bundle\CoreBundle\CoreEntity;
 
 /** 
  * @ORM\Entity
@@ -53,7 +53,7 @@ class AdvertisementSize extends CoreEntity
 
     /** 
      * @ORM\OneToMany(
-     *     targetEntity="BiberLtd\Core\Bundles\AdManagementBundle\Entity\Advertisement",
+     *     targetEntity="BiberLtd\Bundle\AdManagementBundle\Entity\Advertisement",
      *     mappedBy="advertisement_size"
      * )
      */
@@ -61,7 +61,7 @@ class AdvertisementSize extends CoreEntity
 
     /** 
      * @ORM\OneToMany(
-     *     targetEntity="BiberLtd\Core\Bundles\AdManagementBundle\Entity\AdvertisementSizeLocalization",
+     *     targetEntity="BiberLtd\Bundle\AdManagementBundle\Entity\AdvertisementSizeLocalization",
      *     mappedBy="advertisement_size"
      * )
      */

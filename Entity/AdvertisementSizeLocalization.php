@@ -16,7 +16,7 @@
  */
 namespace BiberLtd\Core\Bundles\AdManagementBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
-use BiberLtd\Core\CoreEntity;
+use BiberLtd\Bundle\CoreBundle\CoreEntity;
 /** 
  * @ORM\Entity
  * @ORM\Table(
@@ -40,7 +40,7 @@ class AdvertisementSizeLocalization extends CoreEntity
 
     /** 
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="BiberLtd\Core\Bundles\MultiLanguageSupportBundle\Entity\Language")
+     * @ORM\ManyToOne(targetEntity="BiberLtd\Bundle\MultiLanguageSupportBundle\Entity\Language")
      * @ORM\JoinColumn(name="language", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $language;
@@ -48,7 +48,7 @@ class AdvertisementSizeLocalization extends CoreEntity
     /** 
      * @ORM\Id
      * @ORM\ManyToOne(
-     *     targetEntity="BiberLtd\Core\Bundles\AdManagementBundle\Entity\AdvertisementSize",
+     *     targetEntity="BiberLtd\Bundle\AdManagementBundle\Entity\AdvertisementSize",
      *     inversedBy="localizations"
      * )
      * @ORM\JoinColumn(name="advertisement_size", referencedColumnName="id", nullable=false, onDelete="CASCADE")
